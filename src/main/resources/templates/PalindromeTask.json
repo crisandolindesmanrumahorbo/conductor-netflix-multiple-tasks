@@ -1,0 +1,48 @@
+[
+  {
+    "createdBy": "",
+    "updatedBy": "",
+    "name": "verify_if_integer_is_palindrome",
+    "description": "Task to Verify Integer is Palindrome",
+    "retryCount": 3,
+    "timeoutSeconds": 1200,
+    "inputKeys": [
+      "integer"
+    ],
+    "outputKeys": [
+      "isPalindrome"
+    ],
+    "timeoutPolicy": "TIME_OUT_WF",
+    "retryLogic": "FIXED",
+    "retryDelaySeconds": 60,
+    "responseTimeoutSeconds": 600,
+    "inputTemplate": {},
+    "rateLimitPerFrequency": 0,
+    "rateLimitFrequencyInSeconds": 1,
+    "ownerEmail": "crisandolin@gmail.com",
+    "backoffScaleFactor": 1
+  },
+  {
+    "createdBy": "",
+    "updatedBy": "",
+    "name": "addition_to_get_palindrome",
+    "description": "Task to Get Addition Number to make Palindrome",
+    "retryCount": 3,
+    "timeoutSeconds": 1200,
+    "inputKeys": [
+      "integer"
+    ],
+    "outputKeys": [
+      "palindromeMessage"
+    ],
+    "timeoutPolicy": "TIME_OUT_WF",
+    "retryLogic": "FIXED",
+    "retryDelaySeconds": 60,
+    "responseTimeoutSeconds": 600,
+    "inputTemplate": {},
+    "rateLimitPerFrequency": 0,
+    "rateLimitFrequencyInSeconds": 1,
+    "ownerEmail": "crisandolin@gmail.com",
+    "backoffScaleFactor": 1
+  }
+]

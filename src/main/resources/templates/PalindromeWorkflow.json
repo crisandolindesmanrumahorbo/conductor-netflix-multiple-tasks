@@ -1,0 +1,49 @@
+{
+  "name": "palindrome_workflow",
+  "description": "Palindrome Workflow",
+  "version": 1,
+  "tasks": [
+    {
+      "name": "verify_if_integer_is_palindrome",
+      "taskReferenceName": "integer_verification_ref",
+      "inputParameters": {
+        "integer": "${workflow.input.integer}"
+      },
+      "type": "SIMPLE"
+    },
+    {
+      "name": "switch_task",
+      "taskReferenceName": "is_integer_palindrome",
+      "inputParameters": {
+        "isPalindrome": "${integer_verification_ref.output.isPalindrome}"
+      },
+      "type": "SWITCH",
+      "evaluatorType": "value-param",
+      "expression": "isPalindrome",
+      "decisionCases": {
+        "false": [
+          {
+            "name": "addition_to_get_palindrome",
+            "taskReferenceName": "addition_number_ref",
+            "inputParameters": {
+              "integer": "${workflow.input.integer}"
+            },
+            "type": "SIMPLE"
+          }
+        ]
+      }
+    }
+  ],
+  "inputParameters": [],
+  "outputParameters": {
+    "palindromeMessage": "${addition_number_ref.output.palindromeMessage}"
+  },
+  "schemaVersion": 2,
+  "restartable": true,
+  "workflowStatusListenerEnabled": false,
+  "ownerEmail": "crisandolin@gmail.com",
+  "timeoutPolicy": "ALERT_ONLY",
+  "timeoutSeconds": 0,
+  "variables": {},
+  "inputTemplate": {}
+}
