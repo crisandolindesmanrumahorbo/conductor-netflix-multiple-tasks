@@ -1,0 +1,49 @@
+[
+  {
+    "createdBy": "",
+    "updatedBy": "",
+    "name": "add_user",
+    "description": "Task to Add User to DummyJson",
+    "retryCount": 3,
+    "timeoutSeconds": 1200,
+    "inputKeys": [
+      "firstName"
+    ],
+    "outputKeys": [
+      "addUserMessage"
+    ],
+    "timeoutPolicy": "TIME_OUT_WF",
+    "retryLogic": "FIXED",
+    "retryDelaySeconds": 60,
+    "responseTimeoutSeconds": 600,
+    "inputTemplate": {},
+    "rateLimitPerFrequency": 0,
+    "rateLimitFrequencyInSeconds": 1,
+    "ownerEmail": "crisandolin@gmail.com",
+    "backoffScaleFactor": 1
+  },
+  {
+    "createdBy": "",
+    "updatedBy": "",
+    "name": "add_product",
+    "description": "Task to Add Product to DummyJson",
+    "retryCount": 3,
+    "timeoutSeconds": 1200,
+    "inputKeys": [
+      "title"
+    ],
+    "outputKeys": [
+      "addProductMessage"
+    ],
+    "timeoutPolicy": "TIME_OUT_WF",
+    "retryLogic": "FIXED",
+    "retryDelaySeconds": 60,
+    "responseTimeoutSeconds": 600,
+    "inputTemplate": {},
+    "rateLimitPerFrequency": 0,
+    "rateLimitFrequencyInSeconds": 1,
+    "ownerEmail": "crisandolin@gmail.com",
+    "backoffScaleFactor": 1
+  }
+]
+

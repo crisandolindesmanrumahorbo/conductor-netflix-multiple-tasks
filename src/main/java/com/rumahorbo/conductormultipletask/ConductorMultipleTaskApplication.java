@@ -3,12 +3,16 @@ package com.rumahorbo.conductormultipletask;
 import com.netflix.conductor.client.automator.TaskRunnerConfigurer;
 import com.netflix.conductor.client.http.TaskClient;
 import com.netflix.conductor.client.worker.Worker;
-import com.rumahorbo.conductormultipletask.worker.AdditionPalindromeWorker;
-import com.rumahorbo.conductormultipletask.worker.VerifyIntegerPalindromeWorker;
+import com.rumahorbo.conductormultipletask.service.RestService;
+import com.rumahorbo.conductormultipletask.worker.palindrome.AdditionPalindromeWorker;
+import com.rumahorbo.conductormultipletask.worker.palindrome.VerifyIntegerPalindromeWorker;
+import com.rumahorbo.conductormultipletask.worker.userQuote.ProductWorker;
+import com.rumahorbo.conductormultipletask.worker.userQuote.UserWorker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 public class ConductorMultipleTaskApplication {
@@ -22,15 +26,18 @@ public class ConductorMultipleTaskApplication {
         TaskClient taskClient = new TaskClient();
         taskClient.setRootURI("http://localhost:8080/api/"); // Point this to the server API
 
-        int threadCount = 2; // number of threads used to execute workers.  To avoid starvation, should be
-        // same or more than number of workers
+        Worker additionPalindromeWorker = new AdditionPalindromeWorker(new VerifyIntegerPalindromeWorker());
+        Worker verifyIntegerPalindromeWorker = new VerifyIntegerPalindromeWorker();
+        Worker userWorker = new UserWorker(new RestService());
+        Worker productWorker = new ProductWorker(new RestService());
+        List<Worker> workers = Arrays.asList(additionPalindromeWorker, verifyIntegerPalindromeWorker, userWorker, productWorker);
 
-        Worker worker1 = new AdditionPalindromeWorker(new VerifyIntegerPalindromeWorker());
-        Worker worker2 = new VerifyIntegerPalindromeWorker();
+        int threadCount = workers.size(); // number of threads used to execute workers.  To avoid starvation, should be
+        // same or more than number of workers
 
         // Create TaskRunnerConfigurer
         TaskRunnerConfigurer configurer =
-                new TaskRunnerConfigurer.Builder(taskClient, Arrays.asList(worker1, worker2))
+                new TaskRunnerConfigurer.Builder(taskClient, workers)
                         .withThreadCount(threadCount)
                         .build();
 

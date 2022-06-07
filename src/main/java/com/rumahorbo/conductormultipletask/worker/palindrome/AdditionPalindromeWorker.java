@@ -1,16 +1,14 @@
-package com.rumahorbo.conductormultipletask.worker;
+package com.rumahorbo.conductormultipletask.worker.palindrome;
 
 import com.netflix.conductor.client.worker.Worker;
 import com.netflix.conductor.common.metadata.tasks.Task;
 import com.netflix.conductor.common.metadata.tasks.TaskResult;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class AdditionPalindromeWorker implements Worker {
 
     private final VerifyIntegerPalindromeWorker verifyIntegerPalindromeWorker;
-
-    public AdditionPalindromeWorker(VerifyIntegerPalindromeWorker verifyIntegerPalindromeWorker) {
-        this.verifyIntegerPalindromeWorker = verifyIntegerPalindromeWorker;
-    }
 
     @Override
     public String getTaskDefName() {

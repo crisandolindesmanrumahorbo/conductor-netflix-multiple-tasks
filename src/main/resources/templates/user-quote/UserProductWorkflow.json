@@ -1,0 +1,56 @@
+{
+  "name": "user_product_workflow",
+  "description": "User Product Workflow",
+  "version": 1,
+  "tasks": [
+    {
+      "name": "fork_join",
+      "taskReferenceName": "fork_join_ref",
+      "type": "FORK_JOIN",
+      "forkTasks": [
+        [
+          {
+            "name": "add_user",
+            "taskReferenceName": "add_user_ref",
+            "inputParameters": {
+              "firstName": "${workflow.input.firstName}"
+            },
+            "type": "SIMPLE"
+          }
+        ],
+        [
+          {
+            "name": "add_product",
+            "taskReferenceName": "add_product_ref",
+            "inputParameters": {
+              "title": "${workflow.input.title}"
+            },
+            "type": "SIMPLE"
+          }
+        ]
+      ]
+    },
+    {
+      "name": "user_product_join",
+      "taskReferenceName": "user_product_join_ref",
+      "type": "JOIN",
+      "joinOn": [
+        "add_user_ref",
+        "add_product_ref"
+      ]
+    }
+  ],
+  "inputParameters": [],
+  "outputParameters": {
+    "user": "${user_product_join_ref.output.add_user_ref}",
+    "product": "${user_product_join_ref.output.add_product_ref}"
+  },
+  "schemaVersion": 2,
+  "restartable": true,
+  "workflowStatusListenerEnabled": false,
+  "ownerEmail": "crisandolin@gmail.com",
+  "timeoutPolicy": "ALERT_ONLY",
+  "timeoutSeconds": 0,
+  "variables": {},
+  "inputTemplate": {}
+}

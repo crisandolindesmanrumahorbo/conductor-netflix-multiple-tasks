@@ -1,4 +1,4 @@
-package com.rumahorbo.conductormultipletask.worker;
+package com.rumahorbo.conductormultipletask.worker.palindrome;
 
 import com.netflix.conductor.client.worker.Worker;
 import com.netflix.conductor.common.metadata.tasks.Task;
