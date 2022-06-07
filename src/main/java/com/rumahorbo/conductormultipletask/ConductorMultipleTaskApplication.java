@@ -6,8 +6,8 @@ import com.netflix.conductor.client.worker.Worker;
 import com.rumahorbo.conductormultipletask.service.RestService;
 import com.rumahorbo.conductormultipletask.worker.palindrome.AdditionPalindromeWorker;
 import com.rumahorbo.conductormultipletask.worker.palindrome.VerifyIntegerPalindromeWorker;
-import com.rumahorbo.conductormultipletask.worker.userQuote.ProductWorker;
-import com.rumahorbo.conductormultipletask.worker.userQuote.UserWorker;
+import com.rumahorbo.conductormultipletask.worker.userproduct.ProductWorker;
+import com.rumahorbo.conductormultipletask.worker.userproduct.UserWorker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
